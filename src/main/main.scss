@@ -1,0 +1,11 @@
+.main {
+  padding: 20px;
+  background: rgb(50, 187, 96);
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  text-align: center;
+  .main-title {
+    width: 100%;
+  }
+}
