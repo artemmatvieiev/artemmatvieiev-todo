@@ -1,12 +1,18 @@
 import React from 'react';
 
-import './aside.scss'
+import { UsersList } from '../../UsersList';
 
-export const Aside = () => {
-  
-  return (
-    <aside className='aside'>
-      <p>Aside</p>
-    </aside>
-  )
-};
+import './aside.scss';
+
+const users = [
+	{firstName:'Artem', lastName:'Matveev', age: 35},
+  {firstName:'Igor', lastName:'Bilous', age: 36},
+  {firstName:'Jane', lastName:'Smith', age: 21}
+];
+
+export const Aside = () => (
+  <aside className='aside'>
+    <p>Aside</p>
+    <UsersList users={ users } />
+  </aside>
+);

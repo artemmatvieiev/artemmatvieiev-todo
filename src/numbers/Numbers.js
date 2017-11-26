@@ -25,9 +25,9 @@ export const Numbers = props => {
   return (
     <ul className='numbers'>
       { numbersArr.map((number, index) => (
-            <li key={index}>
-              {number}
-            </li>
+          <li key={ index }>
+            { number }
+          </li>
           ) 
         ) 
       }
