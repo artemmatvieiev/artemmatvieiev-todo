@@ -1,22 +1,19 @@
 import React from 'react';
 import './navigation.scss';
 
-const items = ['Home', 'Gallery', 'Contacts'];
+export const Navigation = (props) => {
+  if (!props.list)
+    return null;
 
-export const Navigation = () => {
-  const text = 'Home';
   return (
     <nav className="main-nav">
       <ul>
-        {
-          items.map((item, index) => (
-              <li key={index}>
-                <a href={`/${item.toLowerCase()}`}>{item}</a>
-              </li>
-            ) 
-          )
-        }
+        { props.list.map(item => 
+          <li key={ Date.now() + Math.random() }>
+            <a href={`/${item.toLowerCase()}`}>{ item }</a>
+          </li>
+        )}
       </ul>
-    </nav>
-  )
+    </nav>    
+  );
 };

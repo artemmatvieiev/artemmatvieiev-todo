@@ -13,8 +13,8 @@ const getTextGreeting = (hours, name) => {
     return name ? `Good evening, ${name}!` : 'Good evening!';
 };
 
-export const Greeting = props => {
-  return (
-      <p className='greeting'>{ getTextGreeting(props.time, props.name) }</p>
-  )
-};
+export const Greeting = (props) => (
+  <p className='greeting'>
+    { getTextGreeting(props.time, props.name) }
+  </p>
+);
