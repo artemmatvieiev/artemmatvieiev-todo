@@ -1,18 +1,21 @@
 import React from 'react';
 
-import { UsersList } from '../../UsersList';
+import { List } from '../../List';
 
 import './aside.scss';
 
-const users = [
-	{firstName:'Artem', lastName:'Matveev', age: 35},
-  {firstName:'Igor', lastName:'Bilous', age: 36},
-  {firstName:'Jane', lastName:'Smith', age: 21}
-];
-
-export const Aside = () => (
-  <aside className='aside'>
-    <p>Aside</p>
-    <UsersList users={ users } />
-  </aside>
-);
+export const Aside = (props) => {
+  const { getUsers, items, clickHandler, loading } = props;
+  
+  return (
+    <aside className='aside'>
+      <h2>Aside</h2>
+      <List 
+        className='users-list'
+        items={items}
+        clickHandler={clickHandler} 
+      />
+      { loading && <span key='3'>Loading...</span> }
+    </aside>
+  );
+};

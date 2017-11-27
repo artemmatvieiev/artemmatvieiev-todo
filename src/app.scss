@@ -1,5 +1,8 @@
 @import 'variables';
 
+* {
+  box-sizing: border-box;
+}
 body {
   background: $main-bg;
   margin: 0;

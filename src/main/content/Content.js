@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { Numbers } from '../../numbers';
+import { List } from '../../List';
 
 import './content.scss';
 
-export const Content = () => (
+export const Content = ({ posts, loading }) => (
   <div className='content'>
-    <p>Content</p>
-    <Numbers from='2' to='55' odd />
+    <h2>Content</h2>
+    <h3>Posts:</h3>
+    <List 
+      className='posts-list' 
+      items={posts} 
+      field='body'
+    />
+    { loading && <span key='4'>Loading...</span> }
   </div>
 );
