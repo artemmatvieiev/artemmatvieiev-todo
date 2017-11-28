@@ -15,6 +15,8 @@ export class Main extends Component {
       posts: [],
       loadingUsers: false,
       loadingPosts: false,
+      activeToggleButton: false,
+      activeGeolocation: false,
       latitude: 0,
       longitude: 0
     };
@@ -39,12 +41,17 @@ export class Main extends Component {
       posts: [] 
     });
 
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
       .then(response => response.json())
-      .then(posts => this.setState({ 
-        posts: posts.filter(post => post.userId == user.id), 
-        loadingPosts: false 
-      }));
+      .then(posts => this.setState({ posts, loadingPosts: false }));
+  }
+
+  clickHandlerToggle = (active) => {
+    const activeValue  = this.state[active];
+    
+    activeValue 
+      ? this.setState({ [active]: false })
+      : this.setState({ [active]: true })
   }
 
   getGeolocation = () => {
@@ -61,28 +68,42 @@ export class Main extends Component {
   }
   
   render() {
-    const { users, posts, loadingUsers, loadingPosts, latitude, longitude } = this.state;
-    
+    const { 
+      users, 
+      posts, 
+      loadingUsers, 
+      loadingPosts, 
+      latitude, 
+      longitude,
+      activeToggleButton,
+      activeGeolocation 
+    } = this.state;
+
     return (
       <main className='main'>
         <Greeting time={ new Date().getHours() } name='Artem'/>
-        <div>
-          <ToggleButton 
-            className='btn-toggle' 
-            text='show' 
-            toggleText='hide'
-            toggleComponentId='hide'
-          />
-          <span id="hide">Some text</span>
-          <ToggleButton 
-            text='Show my geolocation' 
-            toggleText='Hide my geolocation'
-            toggleComponentId='geolocation'
-          />
-          <span id="geolocation">
-            { `latitude: ${ latitude } longitude: ${ longitude }` }
-          </span>
-        </div>
+        <ToggleButton 
+          clickHandler={ this.clickHandlerToggle }
+          activeText='activeToggleButton'
+          classToggleButton='btn-toggle' 
+          text='show' 
+          toggleText='hide'
+          classToggleComponent='hide'
+          textToggleComponent='Some text'
+          active={ activeToggleButton }
+        />
+        <ToggleButton 
+          clickHandler={ this.clickHandlerToggle }
+          activeText='activeGeolocation'
+          text='Show my geolocation' 
+          toggleText='Hide my geolocation'
+          classToggleComponent='geolocation'
+          textToggleComponent={ `latitude: ${ latitude } longitude: ${ longitude }` }
+          active={ activeGeolocation }
+          text='Show my geolocation' 
+          toggleText='Hide my geolocation'
+          idToggleComponent='geolocation'
+        />
         <h1 className='main-title'>Main</h1>
         <Aside 
           getUsers={ this.getUsers }

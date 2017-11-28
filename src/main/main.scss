@@ -10,15 +10,13 @@
     width: 100%;
   }
 }
-#hide {
+.hide {
   display: none;
   &.active {
     display: inline;
   }
 }
-#geolocation {
-  list-style: none;
-  text-align: left;
+.geolocation {
   display: none;
   &.active {
     display: inline;
