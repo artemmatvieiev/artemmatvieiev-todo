@@ -10,3 +10,21 @@
     width: 100%;
   }
 }
+.hide {
+  display: none;
+  &.active {
+    display: inline;
+  }
+}
+.geolocation {
+  display: none;
+  &.active {
+    display: inline;
+  }
+}
+.btn-toggle {
+  background: rgb(6, 233, 6);
+  &.active{
+    background: rgb(255, 5, 5);
+  }
+}

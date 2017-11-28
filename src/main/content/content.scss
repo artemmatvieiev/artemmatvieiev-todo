@@ -1,4 +1,10 @@
+@import '../../variables';
+
 .content {
+  padding: $common-paddings;
   background: rgb(65, 215, 241);
   width: calc(70% - 10px);
+  .posts-list {
+    text-align: left;
+  }
 }

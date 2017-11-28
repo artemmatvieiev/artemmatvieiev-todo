@@ -1,6 +1,10 @@
 @import '../../variables';
 
 .aside {
+  padding: $common-paddings;
   background: rgb(241, 65, 197);
   width: calc(30% - 10px);
+  .users-list {
+    text-align: left;
+  }
 }
