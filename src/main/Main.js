@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import { Aside } from './aside';
 import { Content } from './content';
 import { Greeting } from '../greeting';
 import { ToggleButton } from '../ToggleButton';
+import { Time } from '../Time';
+import { LifecycleComponent } from '../lifecycleComponent';
 
 import './main.scss';
 
 export class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       users: [],
       posts: [],
       loadingUsers: false,
@@ -18,16 +20,17 @@ export class Main extends Component {
       activeToggleButton: false,
       activeGeolocation: false,
       latitude: 0,
-      longitude: 0
+      longitude: 0,
+      showTime: true
     };
     this.getUsers();
     this.getGeolocation();
   }
 
   getUsers = () => {
-    this.setState({ 
+    this.setState({
       loadingUsers: true,
-      users: [] 
+      users: []
     });
 
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -36,9 +39,9 @@ export class Main extends Component {
   }
 
   showUserPosts = (user) => {
-    this.setState({ 
+    this.setState({
       loadingPosts: true,
-      posts: [] 
+      posts: []
     });
 
     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
@@ -47,75 +50,72 @@ export class Main extends Component {
   }
 
   clickHandlerToggle = (active) => {
-    const activeValue  = this.state[active];
-    
-    activeValue 
-      ? this.setState({ [active]: false })
-      : this.setState({ [active]: true })
-  }
+    const activeValue = this.state[active];
 
-  getGeolocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude 
-        });                       
-      });
+    if (activeValue) {
+      this.setState({ [active]: false });
     } else {
-        alert("Geolocation API не поддерживается в вашем браузере");
+      this.setState({ [active]: true });
     }
   }
-  
+  getGeolocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      });
+    });
+  }
+
+  clickHandlerTime = () => {
+    const { showTime } = this.state;
+    this.setState({
+      showTime: !showTime
+    });
+  }
+
   render() {
-    const { 
-      users, 
-      posts, 
-      loadingUsers, 
-      loadingPosts, 
-      latitude, 
+    const {
+      users,
+      posts,
+      loadingUsers,
+      loadingPosts,
+      latitude,
       longitude,
-      activeToggleButton,
-      activeGeolocation 
+      activeGeolocation,
+      showTime
     } = this.state;
 
     return (
-      <main className='main'>
-        <Greeting time={ new Date().getHours() } name='Artem'/>
-        <ToggleButton 
-          clickHandler={ this.clickHandlerToggle }
-          activeText='activeToggleButton'
-          classToggleButton='btn-toggle' 
-          text='show' 
-          toggleText='hide'
-          classToggleComponent='hide'
-          textToggleComponent='Some text'
-          active={ activeToggleButton }
+      <main className="main">
+        <Greeting time={new Date().getHours()} name="Artem" />
+        <button onClick={this.clickHandlerTime}>
+          { showTime ? 'Remove time' : 'Show time' }
+        </button>
+        { showTime && <Time /> }
+        <ToggleButton
+          clickHandler={this.clickHandlerToggle}
+          activeText="activeGeolocation"
+          text="Show my geolocation"
+          toggleText="Hide my geolocation"
+          classToggleComponent="geolocation"
+          textToggleComponent={`latitude: ${latitude} longitude: ${longitude}`}
+          active={activeGeolocation}
+          idToggleComponent="geolocation"
         />
-        <ToggleButton 
-          clickHandler={ this.clickHandlerToggle }
-          activeText='activeGeolocation'
-          text='Show my geolocation' 
-          toggleText='Hide my geolocation'
-          classToggleComponent='geolocation'
-          textToggleComponent={ `latitude: ${ latitude } longitude: ${ longitude }` }
-          active={ activeGeolocation }
-          text='Show my geolocation' 
-          toggleText='Hide my geolocation'
-          idToggleComponent='geolocation'
+        <LifecycleComponent />
+        <h1 className="main-title">Main</h1>
+        <Aside
+          getUsers={this.getUsers}
+          items={users}
+          clickHandler={this.showUserPosts}
+          loading={loadingUsers}
         />
-        <h1 className='main-title'>Main</h1>
-        <Aside 
-          getUsers={ this.getUsers }
-          items={ users }
-          clickHandler={ this.showUserPosts }
-          loading={ loadingUsers }
-        />
-        <Content 
-          posts={ posts } 
-          loading={ loadingPosts }
+        <Content
+          posts={posts}
+          loading={loadingPosts}
         />
       </main>
     );
   }
-};
+}

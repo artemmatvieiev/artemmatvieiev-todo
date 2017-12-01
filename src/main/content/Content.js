@@ -1,18 +1,16 @@
-import React from 'react';
-
 import { List } from '../../List';
 
 import './content.scss';
 
 export const Content = ({ posts, loading }) => (
-  <div className='content'>
+  <div className="content">
     <h2>Content</h2>
     <h3>Posts:</h3>
-    <List 
-      className='posts-list' 
-      items={posts} 
-      field='body'
+    <List
+      className="posts-list"
+      items={posts}
+      field="body"
     />
-    { loading && <span key='4'>Loading...</span> }
+    { loading && <span key="4">Loading...</span> }
   </div>
 );
