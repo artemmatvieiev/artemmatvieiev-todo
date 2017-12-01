@@ -6,9 +6,10 @@ import { Footer } from './footer';
 
 import './app.scss';
 
-export const App =
+export const App = (
   <div>
     <Header />
     <Main />
     <Footer />
-  </div>;
+  </div>
+);

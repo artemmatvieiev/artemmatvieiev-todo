@@ -1,33 +1,31 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import { Aside } from './aside';
 import { Content } from './content';
 import { Greeting } from '../greeting';
-import { ToggleButton } from '../ToggleButton';
+import { Geolocation } from '../Geolocation';
+import { Time } from '../Time';
+import { ColorfulBackground } from '../colorfulBackground';
 
 import './main.scss';
 
 export class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       users: [],
       posts: [],
       loadingUsers: false,
       loadingPosts: false,
-      activeToggleButton: false,
-      activeGeolocation: false,
-      latitude: 0,
-      longitude: 0
+      showTime: true
     };
     this.getUsers();
-    this.getGeolocation();
   }
 
   getUsers = () => {
-    this.setState({ 
+    this.setState({
       loadingUsers: true,
-      users: [] 
+      users: []
     });
 
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -36,9 +34,9 @@ export class Main extends Component {
   }
 
   showUserPosts = (user) => {
-    this.setState({ 
+    this.setState({
       loadingPosts: true,
-      posts: [] 
+      posts: []
     });
 
     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
@@ -46,76 +44,43 @@ export class Main extends Component {
       .then(posts => this.setState({ posts, loadingPosts: false }));
   }
 
-  clickHandlerToggle = (active) => {
-    const activeValue  = this.state[active];
-    
-    activeValue 
-      ? this.setState({ [active]: false })
-      : this.setState({ [active]: true })
+  clickHandlerTime = () => {
+    const { showTime } = this.state;
+    this.setState({
+      showTime: !showTime
+    });
   }
 
-  getGeolocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude 
-        });                       
-      });
-    } else {
-        alert("Geolocation API не поддерживается в вашем браузере");
-    }
-  }
-  
   render() {
-    const { 
-      users, 
-      posts, 
-      loadingUsers, 
-      loadingPosts, 
-      latitude, 
-      longitude,
-      activeToggleButton,
-      activeGeolocation 
+    const {
+      users,
+      posts,
+      loadingUsers,
+      loadingPosts,
+      showTime
     } = this.state;
 
     return (
-      <main className='main'>
-        <Greeting time={ new Date().getHours() } name='Artem'/>
-        <ToggleButton 
-          clickHandler={ this.clickHandlerToggle }
-          activeText='activeToggleButton'
-          classToggleButton='btn-toggle' 
-          text='show' 
-          toggleText='hide'
-          classToggleComponent='hide'
-          textToggleComponent='Some text'
-          active={ activeToggleButton }
+      <main className="main">
+        <Greeting time={new Date().getHours()} name="Artem" />
+        <button onClick={this.clickHandlerTime}>
+          { showTime ? 'Remove time' : 'Show time' }
+        </button>
+        { showTime && <Time /> }
+        <Geolocation />
+        <ColorfulBackground />
+        <h1 className="main-title">Main</h1>
+        <Aside
+          getUsers={this.getUsers}
+          items={users}
+          clickHandler={this.showUserPosts}
+          loading={loadingUsers}
         />
-        <ToggleButton 
-          clickHandler={ this.clickHandlerToggle }
-          activeText='activeGeolocation'
-          text='Show my geolocation' 
-          toggleText='Hide my geolocation'
-          classToggleComponent='geolocation'
-          textToggleComponent={ `latitude: ${ latitude } longitude: ${ longitude }` }
-          active={ activeGeolocation }
-          text='Show my geolocation' 
-          toggleText='Hide my geolocation'
-          idToggleComponent='geolocation'
-        />
-        <h1 className='main-title'>Main</h1>
-        <Aside 
-          getUsers={ this.getUsers }
-          items={ users }
-          clickHandler={ this.showUserPosts }
-          loading={ loadingUsers }
-        />
-        <Content 
-          posts={ posts } 
-          loading={ loadingPosts }
+        <Content
+          posts={posts}
+          loading={loadingPosts}
         />
       </main>
     );
   }
-};
+}
