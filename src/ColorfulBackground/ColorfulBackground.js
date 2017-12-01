@@ -2,9 +2,9 @@ import { Component } from 'react';
 
 import { Mount } from './Mount';
 
-import './lifecycleComponent.scss';
+import './colorfulBackground.scss';
 
-export class LifecycleComponent extends Component {
+export class ColorfulBackground extends Component {
   constructor(props) {
     super(props);
     this.state = {

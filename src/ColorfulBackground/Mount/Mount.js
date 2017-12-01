@@ -20,11 +20,11 @@ export class Mount extends Component {
   }
 
   componentWillReceiveProps({ code }) {
+    if (code === 0) return this.setState({ colorBg: '#ccc' });
+    if (code % 3 === 0 && code % 5 === 0) return this.setState({ colorBg: '#0ff' });
+    if (code % 3 === 0) return this.setState({ colorBg: 'green' });
+    if (code % 5 === 0) return this.setState({ colorBg: 'blue' });
     this.setState({ colorBg: '#ccc' });
-    if (code % 3 === 0) this.setState({ colorBg: 'green' });
-    if (code % 5 === 0) this.setState({ colorBg: 'blue' });
-    if (code % 3 === 0 && code % 5 === 0) this.setState({ colorBg: '#0ff' });
-    if (code === 0) this.setState({ colorBg: '#ccc' });
   }
 
   render() {

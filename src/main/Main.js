@@ -3,9 +3,9 @@ import { Component } from 'react';
 import { Aside } from './aside';
 import { Content } from './content';
 import { Greeting } from '../greeting';
-import { ToggleButton } from '../ToggleButton';
+import { Geolocation } from '../Geolocation';
 import { Time } from '../Time';
-import { LifecycleComponent } from '../lifecycleComponent';
+import { ColorfulBackground } from '../colorfulBackground';
 
 import './main.scss';
 
@@ -17,14 +17,9 @@ export class Main extends Component {
       posts: [],
       loadingUsers: false,
       loadingPosts: false,
-      activeToggleButton: false,
-      activeGeolocation: false,
-      latitude: 0,
-      longitude: 0,
       showTime: true
     };
     this.getUsers();
-    this.getGeolocation();
   }
 
   getUsers = () => {
@@ -49,24 +44,6 @@ export class Main extends Component {
       .then(posts => this.setState({ posts, loadingPosts: false }));
   }
 
-  clickHandlerToggle = (active) => {
-    const activeValue = this.state[active];
-
-    if (activeValue) {
-      this.setState({ [active]: false });
-    } else {
-      this.setState({ [active]: true });
-    }
-  }
-  getGeolocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      });
-    });
-  }
-
   clickHandlerTime = () => {
     const { showTime } = this.state;
     this.setState({
@@ -80,9 +57,6 @@ export class Main extends Component {
       posts,
       loadingUsers,
       loadingPosts,
-      latitude,
-      longitude,
-      activeGeolocation,
       showTime
     } = this.state;
 
@@ -93,17 +67,8 @@ export class Main extends Component {
           { showTime ? 'Remove time' : 'Show time' }
         </button>
         { showTime && <Time /> }
-        <ToggleButton
-          clickHandler={this.clickHandlerToggle}
-          activeText="activeGeolocation"
-          text="Show my geolocation"
-          toggleText="Hide my geolocation"
-          classToggleComponent="geolocation"
-          textToggleComponent={`latitude: ${latitude} longitude: ${longitude}`}
-          active={activeGeolocation}
-          idToggleComponent="geolocation"
-        />
-        <LifecycleComponent />
+        <Geolocation />
+        <ColorfulBackground />
         <h1 className="main-title">Main</h1>
         <Aside
           getUsers={this.getUsers}
