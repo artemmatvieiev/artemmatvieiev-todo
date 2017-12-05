@@ -2,14 +2,14 @@ export const List = ({
   items,
   clickHandler,
   className,
-  field = 'name'
+  field
 }) => (
-  <ul className={className || null}>
+  <ul className={className}>
     {
       items.map((item, index) => (
         <li
           key={item.id || index}
-          onClick={clickHandler ? () => clickHandler(item) : null}
+          onClick={() => clickHandler(item)}
         >
           { item[field] }
         </li>
@@ -17,3 +17,17 @@ export const List = ({
     }
   </ul>
 );
+
+List.defaultProps = {
+  items: [],
+  clickHandler: _ => _,
+  className: '',
+  field: 'name'
+};
+
+List.propTypes = {
+  items: PropTypes.array,
+  clickHandler: PropTypes.func,
+  className: PropTypes.string,
+  field: PropTypes.string
+};

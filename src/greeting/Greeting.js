@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './greeting.scss';
 
 const getTextGreeting = (hours, name) => {
@@ -22,3 +20,12 @@ export const Greeting = props => (
     { getTextGreeting(props.time, props.name) }
   </p>
 );
+
+Greeting.defaultProps = {
+  name: ''
+};
+
+Greeting.propTypes = {
+  time: PropTypes.number.isRequired,
+  name: PropTypes.string
+};

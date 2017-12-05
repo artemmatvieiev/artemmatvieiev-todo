@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 export class Geolocation extends Component {
   constructor(props) {
     super(props);

@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 import './mount.scss';
 
 export class Mount extends Component {
@@ -41,3 +39,7 @@ export class Mount extends Component {
     );
   }
 }
+
+Mount.propTypes = {
+  code: PropTypes.number.isRequired
+};

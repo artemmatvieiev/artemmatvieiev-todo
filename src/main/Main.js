@@ -1,13 +1,20 @@
-import { Component } from 'react';
-
 import { Aside } from './aside';
 import { Content } from './content';
 import { Greeting } from '../greeting';
 import { Geolocation } from '../Geolocation';
 import { Time } from '../Time';
-import { ColorfulBackground } from '../colorfulBackground';
+import { ColorfulBackground } from '../ColorfulBackground';
+import { Tabs } from '../Tabs';
 
 import './main.scss';
+
+const tabs = [
+  { id: 0, title: 'Tab 1', content: 'Some text is here' },
+  { id: 1, title: 'Tab 2', content: 'Another content' },
+  { id: 2, title: 'Tab 3', content: 'Third text' },
+  { id: 3, title: 'Tab 4', content: 'Fourth text' },
+  { id: 4, title: 'Tab 5', content: 'Fifth text' }
+];
 
 export class Main extends Component {
   constructor(props) {
@@ -63,6 +70,7 @@ export class Main extends Component {
     return (
       <main className="main">
         <Greeting time={new Date().getHours()} name="Artem" />
+        <Tabs tabs={tabs} />
         <button onClick={this.clickHandlerTime}>
           { showTime ? 'Remove time' : 'Show time' }
         </button>
@@ -71,7 +79,6 @@ export class Main extends Component {
         <ColorfulBackground />
         <h1 className="main-title">Main</h1>
         <Aside
-          getUsers={this.getUsers}
           items={users}
           clickHandler={this.showUserPosts}
           loading={loadingUsers}

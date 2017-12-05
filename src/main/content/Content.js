@@ -14,3 +14,7 @@ export const Content = ({ posts, loading }) => (
     { loading && <span key="4">Loading...</span> }
   </div>
 );
+
+Content.propTypes = {
+  loading: PropTypes.bool.isRequired
+};
