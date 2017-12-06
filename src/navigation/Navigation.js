@@ -1,8 +1,7 @@
-import React from 'react';
 import './navigation.scss';
 
 export const Navigation = (props) => {
-  if (!props.list) {
+  if (!props.list.length) {
     return null;
   }
 
@@ -19,4 +18,12 @@ export const Navigation = (props) => {
       </ul>
     </nav>
   );
+};
+
+Navigation.defaultProps = {
+  list: []
+};
+
+Navigation.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.string)
 };

@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 import { Mount } from './Mount';
 
 import './colorfulBackground.scss';
@@ -19,7 +17,7 @@ export class ColorfulBackground extends Component {
     return (
       <div className="lifecycle">
         <button onClick={() => this.setState({ counter: counter + 1 })}>Inc</button>
-        <span className="count-text">{this.state.counter}</span>
+        <span className="count-text">{counter}</span>
         <br /><br />
         <button onClick={() => this.setState({ show: !show })}>
           { show ? 'Destroy' : 'Create' }

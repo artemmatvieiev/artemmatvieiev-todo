@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 export class Time extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +16,6 @@ export class Time extends Component {
   }
 
   render() {
-    const { time } = this.state;
-
-    return <span>{ time }</span>;
+    return <span>{ this.state.time }</span>;
   }
 }

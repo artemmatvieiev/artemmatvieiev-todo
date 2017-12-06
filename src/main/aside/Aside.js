@@ -17,3 +17,7 @@ export const Aside = (props) => {
     </aside>
   );
 };
+
+Aside.propTypes = {
+  loading: PropTypes.bool.isRequired
+};
