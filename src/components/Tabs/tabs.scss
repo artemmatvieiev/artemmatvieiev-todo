@@ -1,4 +1,4 @@
-.tab {
+.tabs {
 	position: relative;
 	overflow: hidden;
 	margin: 0 auto 2rem;
@@ -58,9 +58,7 @@
       color: #2CC185;
     }
     &:focus {
-      span {
-        color: #fff;
-      }
+      color: #fff;
     }
     &:focus::after {
       -webkit-transform: translate3d(0,0,0);

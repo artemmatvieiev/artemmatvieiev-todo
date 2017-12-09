@@ -2,9 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const htmlPlugin = require('html-webpack-plugin');
 const textPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const args = require('yargs').argv;
 
 const styleLoader = ['style-loader', 'css-loader', 'sass-loader'];
+
+const images = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
 const plugins = [
   new htmlPlugin({
@@ -20,7 +23,11 @@ const plugins = [
     React: 'react',
     Component: ['react', 'Component'],
     PropTypes: 'prop-types'
-  })
+  }),
+  new CopyWebpackPlugin([
+    ...images.map(ext => ({ from: `**/*/*.${ext}`, to: 'images/[name].[ext]' })),
+    { from: 'assets', to: 'assets' }
+  ])
 ];
 
 module.exports = {
@@ -32,6 +39,13 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
+  },
+
+  resolve: {
+    modules: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'node_modules')
+    ]
   },
 
   module: {

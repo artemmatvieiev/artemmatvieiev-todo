@@ -1,6 +1,6 @@
-import { Header } from './header';
-import { Main } from './main';
-import { Footer } from './footer';
+import { Header } from './partials/header';
+import { Main } from './partials/main';
+import { Footer } from './partials/footer';
 
 import './app.scss';
 
