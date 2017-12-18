@@ -2,7 +2,7 @@ import { Greeting } from 'components/greeting';
 import { Geolocation } from 'components/Geolocation';
 import { Time } from 'components/Time';
 import { ColorfulBackground } from 'components/ColorfulBackground';
-import { Tabs, Tablink, Tab, TabContent } from 'components/Tabs';
+import { TaskList } from 'components/TaskList';
 import { Aside } from './aside';
 import { Content } from './content';
 
@@ -62,31 +62,7 @@ export class Main extends Component {
     return (
       <main className="main">
         <Greeting time={new Date().getHours()} name="Artem" />
-        <Tabs>
-          <Tab>
-            <Tablink title="Link 1" />
-            <TabContent>
-              <h1>I am tab 1</h1>
-              <p>Lorem ispum</p>
-            </TabContent>
-          </Tab>
-
-          <Tab>
-            <Tablink title="Link 2" />
-            <TabContent>
-              <h1>I am tab 2</h1>
-              <p>Lorem ispum</p>
-            </TabContent>
-          </Tab>
-
-          <Tab>
-            <Tablink title="Link 3" />
-            <TabContent>
-              <h1>I am tab 3</h1>
-              <p>Lorem ispum</p>
-            </TabContent>
-          </Tab>
-        </Tabs>
+        <TaskList />
         <button onClick={this.clickHandlerTime}>
           { showTime ? 'Remove time' : 'Show time' }
         </button>

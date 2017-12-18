@@ -1,4 +1,4 @@
-export const Tablink = ({ title, index, select }) => {
+export const TabLink = ({ title, index, select }) => {
   const onClick = (e) => {
     select(index);
     e.preventDefault();

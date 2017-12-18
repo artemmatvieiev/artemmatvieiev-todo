@@ -2,7 +2,6 @@
 	position: relative;
 	overflow: hidden;
 	margin: 0 auto 2rem;
-	width: 100%;
   font-size: 1.8rem;
   border: 2px solid #cbd1d8;
   nav {
@@ -39,6 +38,14 @@
     -moz-flex: 1;
     -ms-flex: 1;
     flex: 1;
+    &.active a {
+      color: #fff;
+    }
+    &.active a::after {
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+      background: #2CC185;
+    }
   }
   a {
     text-decoration: none;
@@ -57,14 +64,6 @@
       outline: none;
       color: #2CC185;
     }
-    &:focus {
-      color: #fff;
-    }
-    &:focus::after {
-      -webkit-transform: translate3d(0,0,0);
-      transform: translate3d(0,0,0);
-      background: #2CC185;
-    }
     &::after {
       position: absolute;
       top: 0;
@@ -81,6 +80,13 @@
       -webkit-transform: translate3d(0,100%,0) translate3d(0,-3px,0);
       transform: translate3d(0,100%,0) translate3d(0,-3px,0);
     }
+  }
+  .contentList {
+    padding: 20px;
+  }
+  .contentList li {
+    display: flex;
+    justify-content: space-between;
   }
   span {
     vertical-align: middle;
