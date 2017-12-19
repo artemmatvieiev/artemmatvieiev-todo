@@ -3,13 +3,13 @@ export const TabNav = ({ children, select, activeIndex }) => (
     <ul>
       {
         children.map((el, index) => {
-          const Tablink = el.type;
+          const TabLink = el.type;
           return (
             <li
               key={index}
               className={activeIndex === index ? 'active' : ''}
             >
-              <Tablink
+              <TabLink
                 {...el.props}
                 select={select}
                 index={index}

@@ -1,5 +1,5 @@
 export * from './Tabs';
 export * from './TabContent';
-export * from './Tablink';
+export * from './TabLink';
 export * from './Tab';
 export * from './TabNav';

@@ -1,11 +1,11 @@
-import { TabContent, Tab, Tablink, TabNav } from './';
+import { TabContent, Tab, TabLink, TabNav } from './';
 
 import './tabs.scss';
 
 export class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: 0 };
+    this.state = { id: this.props.selected || 0 };
   }
 
   clickTab = (id) => {
@@ -17,7 +17,7 @@ export class Tabs extends React.Component {
       .filter(child => child.type === Tab)
       .reduce((prev, next) => [...prev, ...next.props.children], []);
 
-    const navList = tabs.filter(tab => tab.type === Tablink);
+    const navList = tabs.filter(tab => tab.type === TabLink);
     const tabContents = tabs.filter(tab => tab.type === TabContent);
 
     return (
