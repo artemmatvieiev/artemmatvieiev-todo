@@ -2,11 +2,11 @@ export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export const contents = {
   Sun: [
-    { task: 'walk the dog', id: 'Sun-1' },
-    { task: 'Watch video lesson', id: 'Sun-2' },
-    { task: 'Do my homework', id: 'Sun-3' },
-    { task: 'Check email', id: 'Sun-4' },
-    { task: 'Vacuum car', id: 'Sun-5' }
+    { task: 'walk the dog', id: 'suns1' },
+    { task: 'Watch video lesson', id: 'suns2' },
+    { task: 'Do my homework', id: 'suns3' },
+    { task: 'Check email', id: 'suns4' },
+    { task: 'Vacuum car', id: 'suns5' }
   ],
   Mon: [
     { task: 'walk the dog', id: 'Mon-1' },

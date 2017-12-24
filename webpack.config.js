@@ -22,7 +22,8 @@ const plugins = [
   new webpack.ProvidePlugin({
     React: 'react',
     Component: ['react', 'Component'],
-    PropTypes: 'prop-types'
+    PropTypes: 'prop-types',
+    $: 'jquery'
   }),
   new CopyWebpackPlugin([
     ...images.map(ext => ({ from: `**/*/*.${ext}`, to: 'images/[name].[ext]' })),
@@ -38,7 +39,8 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
 
   resolve: {
@@ -55,6 +57,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
       },
 
       {
@@ -73,9 +78,17 @@ module.exports = {
         test: /\.s?css$/,
         use: textPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: [
+            'css-loader',
 
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: ['src']
+              }
+            }
+          ]
+        })
       }
     ],
   },
@@ -88,6 +101,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     port: 9000,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 };

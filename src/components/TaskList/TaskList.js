@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Tabs, TabLink, Tab, TabContent } from 'components/Tabs';
 import { Button } from 'components/Button';
 
@@ -22,7 +24,9 @@ export class TaskList extends Component {
               <ol className="contentList">
                 {contents[day].map(content => (
                   <li key={content.id}>
-                    <p>{ content.task }</p>
+                    <Link to={`/tasks/${content.id}`}>
+                      {content.task}
+                    </Link>
                     <div>
                       <Button btnClass="btn-done" btnText="v" />
                       <Button btnClass="btn-delete" btnText="x" />

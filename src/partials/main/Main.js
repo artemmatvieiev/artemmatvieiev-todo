@@ -1,6 +1,8 @@
 import { Greeting } from 'components/greeting';
 import { Geolocation } from 'components/Geolocation';
 import { Time } from 'components/Time';
+import { SearchTasks } from 'components/SearchTasks';
+import { EditableText } from 'components/EditableText';
 import { ColorfulBackground } from 'components/ColorfulBackground';
 import { TaskList } from 'components/TaskList';
 import { Aside } from './aside';
@@ -61,13 +63,16 @@ export class Main extends Component {
 
     return (
       <main className="main">
+        <h1>Hello {this.props.name}</h1>
         <Greeting time={new Date().getHours()} name="Artem" />
+        <EditableText fn={text => console.log(text)} />
+        <Geolocation />
+        <SearchTasks />
         <TaskList />
         <button onClick={this.clickHandlerTime}>
           { showTime ? 'Remove time' : 'Show time' }
         </button>
         { showTime && <Time /> }
-        <Geolocation />
         <ColorfulBackground />
         <h1 className="main-title">Main</h1>
         <Aside
