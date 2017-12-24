@@ -63,6 +63,7 @@ export class Main extends Component {
 
     return (
       <main className="main">
+        <h1>Hello {this.props.name}</h1>
         <Greeting time={new Date().getHours()} name="Artem" />
         <EditableText fn={text => console.log(text)} />
         <Geolocation />

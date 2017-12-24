@@ -22,7 +22,8 @@ const plugins = [
   new webpack.ProvidePlugin({
     React: 'react',
     Component: ['react', 'Component'],
-    PropTypes: 'prop-types'
+    PropTypes: 'prop-types',
+    $: 'jquery'
   }),
   new CopyWebpackPlugin([
     ...images.map(ext => ({ from: `**/*/*.${ext}`, to: 'images/[name].[ext]' })),
