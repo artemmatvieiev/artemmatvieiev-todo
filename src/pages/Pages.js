@@ -2,45 +2,47 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { TaskList } from '../components/TaskList';
 import { Main } from '../partials/main';
-import { Login } from '../pages/login';
-import { Task } from '../pages/Task';
+import { Login } from './login';
+import { Task } from './Task';
+// import { NotFound } from './NotFound';
+import { UpdateUser } from './UpdateUser';
+import { CreateUser } from './CreateUser';
+import { Success } from './success';
 
-export class Pages extends Component {
-  constructor(p) {
-    super(p);
-
-    this.state = { isLoading: false };
-  }
-
-  onLogin = (data) => {
-    this.setState({ isLoading: true });
-    setTimeout(() => {
-      this.props.setLoginState(data);
-      this.setState({ isLoading: false });
-    }, 1000);
-  }
-
-  render() {
-    if (!this.props.login) {
-      return (
-        <Switch>
-          <Route
-            path="/login"
-            render={() => <Login login={this.onLogin} isLoading={this.state.isLoading} />}
-          />
-          <Redirect to="/login" />
-        </Switch>
-      );
-    }
-
+export const Pages = ({ user, setLoginState }) => {
+  if (!user) {
     return (
       <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/home" exact component={Main} />
-        <Route path="/tasks" exact component={TaskList} />
-        <Route path="/tasks/:task" component={Task} />
-        <Redirect from="/login" to="/" />
+        <Route
+          path="/login"
+          render={() => <Login login={setLoginState} />}
+        />
+        <Route
+          path="/user"
+          render={({ history }) => (
+            <CreateUser
+              user={user}
+              setLoginState={setLoginState}
+              history={history}
+            />
+          )}
+        />
+        <Route path="/success" component={Success} />
+        <Redirect to="/login" />
       </Switch>
     );
   }
-}
+
+  const main = () => <Main name={user.firstName} />;
+
+  return (
+    <Switch>
+      <Route path="/" exact component={main} />
+      <Route path="/home" exact component={main} />
+      <Route path="/tasks" exact component={TaskList} />
+      <Route path="/tasks/:task" component={Task} />
+      <Route path="/user" render={() => <UpdateUser user={user} />} />
+      <Redirect from="/login" to="/" />
+    </Switch>
+  );
+};

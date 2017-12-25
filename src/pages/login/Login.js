@@ -1,24 +1,21 @@
+import { Loader } from 'components/Loader';
 import { Form } from 'components/Form';
+import { login } from 'services/userService';
 
 export const Login = (props) => {
-  const login = (data) => {
-    console.log(data);
-    $.ajax({
-      type: 'POST',
-      // url: 'http://localhost:8081/public/login',
-      url: 'https://jsonplaceholder.typicode.com/users',
-      data,
-      xhrFields: { withCredentials: true }
-    })
+  const loginUser = (data) => {
+    login(data)
       .then(data => props.login(data))
       .catch(console.log);
+  /* eslint no-console: ["error", { allow: ["log"] }] */
   };
 
   return (
-    props.isLoading ? <mark>Loading...</mark> :
+    props.isLoading ? <Loader /> :
     <Form
-      exclude={['firstname', 'secondname', 'repeat password']}
-      submit={login}
+      exclude={['firstName', 'lastName', 'repeat password']}
+      submit={loginUser}
+      data={props.user}
     />
   );
 };

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://jsonplaceholder.typicode.com/';
+const BASE_URL = 'http://localhost:8081/';
 
 export const request = (url = '', type = 'get', data = null) => $.ajax({
   type,

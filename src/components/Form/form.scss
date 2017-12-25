@@ -1,0 +1,36 @@
+.form {
+  border: 2px solid rgba(51, 53, 52, 0.2);
+  border-radius: 5px;
+  width: 30%;
+  padding: 20px;
+  margin: 0 auto;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    position: relative;
+    span {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      color: red;
+    }
+  }
+  input {
+    margin: 0 0 20px;
+    width: 100%;
+    text-align: center;
+    &[type="submit"] {
+      width: auto;
+      margin: 0;
+    }
+  }
+  span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: red;
+  }
+}

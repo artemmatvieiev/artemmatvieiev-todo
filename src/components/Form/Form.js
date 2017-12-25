@@ -1,17 +1,21 @@
+import './form.scss';
+
 export class Form extends Component {
   constructor(props) {
     super(props);
 
     this.fields = [
       { label: 'email', reg: /^\w+@\w+\.[a-z]{2,}$/ },
-      { label: 'firstname', reg: /^[^ ]{3,20}$/ },
-      { label: 'secondname', reg: /^[^ ]{3,20}$/ },
+      { label: 'firstName', reg: /^[^ ]{3,20}$/ },
+      { label: 'lastName', reg: /^[^ ]{3,20}$/ },
       { label: 'password', reg: /^[^ ]{6,20}$/, secure: true },
       { label: 'repeat password', reg: /^[^ ]{6,20}$/, secure: true }
     ];
 
+    const { data } = this.props;
+
     this.state = {};
-    this.fields.forEach(field => this.state[field.label] = { value: '' });
+    this.fields.forEach(field => this.state[field.label] = { value: data && data[field.label] || '' });
   }
 
   handleField = ({ target }) => {
@@ -62,7 +66,7 @@ export class Form extends Component {
     e.preventDefault();
   }
 
-  getValidClass = (error) => {
+  static getValidClass = (error) => {
     if (error) {
       return 'error';
     }
@@ -77,16 +81,21 @@ export class Form extends Component {
   getDisabledState() {
     return this.fields
       .filter(this.filterExcluded)
+      .filter(this.filterDisabled)
       .some((field) => {
-        const fieldFromState = this.state[field.label];
+        const { error, value } = this.state[field.label];
 
-        if (fieldFromState.error || fieldFromState.error === undefined) {
+        if (error || error === undefined && !value) {
           return true;
         }
+
+        return false;
       });
   }
 
   filterExcluded = field => !this.props.exclude.find(name => field.label === name);
+
+  filterDisabled = field => !this.props.disabled.find(name => field.label === name);
 
   render() {
     const { state, fields, props } = this;
@@ -94,7 +103,7 @@ export class Form extends Component {
 
     return (
       <form
-        className="user"
+        className="form"
         onSubmit={this.saveUser}
       >
         <ul>
@@ -105,7 +114,7 @@ export class Form extends Component {
                 <input
                   type={field.secure ? 'password' : 'text'}
                   name={field.label}
-                  className={this.getValidClass(state[field.label].error)}
+                  className={Form.getValidClass(state[field.label].error)}
                   placeholder={field.label.toUpperCase()}
                   value={state[field.label].value}
                   disabled={disabled.includes(field.label)}
@@ -120,7 +129,7 @@ export class Form extends Component {
 
         <input
           type="submit"
-          value="Save"
+          value="Ok"
           disabled={this.getDisabledState()}
         />
       </form>
