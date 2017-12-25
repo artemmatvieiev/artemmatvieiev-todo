@@ -19,7 +19,7 @@ export class SearchTasks extends Component {
   getTodos = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
-      .then(todos => this.setState({ todos }));
+      .then(todos => this.setState({ todos: todos.splice(0, 20) }));
   }
 
   changeHandler = (e) => {

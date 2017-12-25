@@ -16,9 +16,9 @@ const getTextGreeting = (hours, name) => {
 };
 
 export const Greeting = props => (
-  <p className="greeting">
+  <h2 className="greeting">
     { getTextGreeting(props.time, props.name) }
-  </p>
+  </h2>
 );
 
 Greeting.defaultProps = {

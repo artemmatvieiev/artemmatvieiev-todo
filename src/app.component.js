@@ -9,28 +9,29 @@ export class App extends Component {
     super(props);
 
     this.state = {
-      login: false
+      user: false
     };
   }
 
-  setLoginState = (login) => {
-    this.setState({ login });
+  setLoginState = (user) => {
+    this.setState({ user });
   }
 
   render() {
-    const { login } = this.state;
+    const { user } = this.state;
 
     return (
-      <div className="wrapper">
-        <Header
-          login={login}
-          setLoginState={this.setLoginState}
-        />
-
-        <Pages
-          login={login}
-          setLoginState={this.setLoginState}
-        />
+      <div className="mainWrapper">
+        <div className="mainContent">
+          <Header
+            user={user}
+            setLoginState={this.setLoginState}
+          />
+          <Pages
+            user={user}
+            setLoginState={this.setLoginState}
+          />
+        </div>
 
         <Footer />
       </div>

@@ -1,6 +1,8 @@
 @import '../../variables';
 
 .footer {
-  background: rgb(252, 104, 35);
+  background: rgba(51, 53, 52, 0.5);
+  box-shadow: 0 0 5px 2px rgba(51, 53, 52, 0.5);
+  color: #fff;
   padding: $common-paddings;
 }

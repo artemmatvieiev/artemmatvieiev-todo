@@ -3,7 +3,6 @@ import { Geolocation } from 'components/Geolocation';
 import { Time } from 'components/Time';
 import { SearchTasks } from 'components/SearchTasks';
 import { EditableText } from 'components/EditableText';
-import { ColorfulBackground } from 'components/ColorfulBackground';
 import { TaskList } from 'components/TaskList';
 import { Aside } from './aside';
 import { Content } from './content';
@@ -61,20 +60,19 @@ export class Main extends Component {
       showTime
     } = this.state;
 
+    const { name } = this.props;
+
     return (
       <main className="main">
-        <h1>Hello {this.props.name}</h1>
-        <Greeting time={new Date().getHours()} name="Artem" />
+        <Greeting time={new Date().getHours()} name={name} />
         <EditableText fn={text => console.log(text)} />
+        <TaskList />
         <Geolocation />
         <SearchTasks />
-        <TaskList />
         <button onClick={this.clickHandlerTime}>
           { showTime ? 'Remove time' : 'Show time' }
         </button>
         { showTime && <Time /> }
-        <ColorfulBackground />
-        <h1 className="main-title">Main</h1>
         <Aside
           items={users}
           clickHandler={this.showUserPosts}
