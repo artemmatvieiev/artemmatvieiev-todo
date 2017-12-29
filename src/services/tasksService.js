@@ -1,8 +1,10 @@
-import request from './request';
+import { request } from './request';
 
 export const createTask = data => request('tasks', 'post', data);
 
 export const updateTask = (id, data) => request(`tasks/${id}`, 'put', data);
+
+export const removeTask = id => request(`tasks/${id}`, 'delete');
 
 export const getTasks = () => request('tasks');
 

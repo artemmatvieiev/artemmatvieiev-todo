@@ -1,27 +1,19 @@
 .main {
+  width: 100%;
+  flex: 1;
   padding: 20px;
-  display: flex;
-  align-items: flex-start;
-  flex-flow: wrap;
-  .main-title {
-    width: 100%;
+  .greeting {
+    font-size: 3rem;
+    padding: 0;
+    margin: 0 0 20px;
   }
-}
-.hide {
-  display: none;
-  &.active {
-    display: inline;
-  }
-}
-.geolocation {
-  display: none;
-  &.active {
-    display: inline;
-  }
-}
-.btn-toggle {
-  background: rgb(6, 233, 6);
-  &.active{
-    background: rgb(255, 5, 5);
+  .info {
+    width: 40%;
+    margin: 0 auto;
+    p {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
   }
 }
