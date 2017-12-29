@@ -6,6 +6,7 @@ export const TabLink = ({ title, index, select }) => {
 
   return (
     <a
+      className="nav-link"
       href="#"
       onClick={onClick}
     >

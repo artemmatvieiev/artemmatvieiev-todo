@@ -1,3 +1,5 @@
+import { checkUser } from 'services/userService';
+import { Loader } from 'components/Loader';
 import { Header } from './partials/header';
 import { Pages } from './pages';
 import { Footer } from './partials/footer';
@@ -9,8 +11,14 @@ export class App extends Component {
     super(props);
 
     this.state = {
-      user: false
+      user: null
     };
+  }
+
+  componentDidMount() {
+    checkUser()
+      .then(user => this.setState({ user }))
+      .catch(() => this.setLoginState(false));
   }
 
   setLoginState = (user) => {
@@ -21,20 +29,22 @@ export class App extends Component {
     const { user } = this.state;
 
     return (
-      <div className="mainWrapper">
-        <div className="mainContent">
-          <Header
-            user={user}
-            setLoginState={this.setLoginState}
-          />
-          <Pages
-            user={user}
-            setLoginState={this.setLoginState}
-          />
-        </div>
-
+      <React.Fragment>
+        <Header
+          user={user}
+          setLoginState={this.setLoginState}
+        />
+        <main className="main">
+          {
+            user !== null ?
+              <Pages
+                user={user}
+                setLoginState={this.setLoginState}
+              /> : <Loader />
+          }
+        </main>
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }
