@@ -2,7 +2,7 @@
 
 ## How to setup
 
-1. Go to directory `Server` and run `npm i`
+1. Go to directory `base-koa` and run `npm i`
 2. When setup is completed run `npm start`
 3. Go to root directory and run `npm i`
 4. When setup is completed run `npm start`
