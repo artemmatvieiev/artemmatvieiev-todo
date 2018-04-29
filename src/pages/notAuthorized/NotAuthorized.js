@@ -11,7 +11,7 @@ export const NotAuthorized = ({ user, setLoginState }) => (
       render={() => <Login login={setLoginState} />}
     />
     <Route
-      path="/user"
+      path="/register"
       render={({ history }) => (
         <CreateUser
           user={user}

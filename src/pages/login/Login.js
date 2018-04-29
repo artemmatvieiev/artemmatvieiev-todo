@@ -6,6 +6,7 @@ export const Login = (props) => {
   const loginUser = (data) => {
     login(data)
       .then(data => props.login(data))
+      /* eslint no-console: ["error", { allow: ["log"] }] */
       .catch(console.log);
   };
 

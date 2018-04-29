@@ -10,7 +10,7 @@ html {
 body {
   font: 1.6rem/2rem sans-serif;
   color: #74777b;
-  background: url(https://img00.deviantart.net/9589/i/2009/340/5/5/brushed_metal_silver_texture_by_sweetsoulsister.jpg);
+  background: url(./images/bg.jpg);
   margin: 0;
   p {
     margin: 0;
@@ -22,4 +22,7 @@ body {
   flex-direction: column;
   max-width: 1024px;
   margin: 0 auto;
+}
+.main {
+  flex: 1;
 }

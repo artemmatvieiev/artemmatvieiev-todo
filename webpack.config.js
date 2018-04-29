@@ -3,9 +3,6 @@ const webpack = require('webpack');
 const htmlPlugin = require('html-webpack-plugin');
 const textPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const args = require('yargs').argv;
-
-const styleLoader = ['style-loader', 'css-loader', 'sass-loader'];
 
 const images = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
@@ -89,6 +86,18 @@ module.exports = {
             }
           ]
         })
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              limit: 1024
+            }
+          }
+        ]
       }
     ],
   },

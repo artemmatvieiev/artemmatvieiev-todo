@@ -4,6 +4,7 @@ import { update } from 'services/userService';
 export const UpdateUser = (props) => {
   const userHandler = (data) => {
     update(data).then(props.setLoginState);
+    props.history.push('/');
   };
 
   return (

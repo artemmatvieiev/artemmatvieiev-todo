@@ -1,4 +1,6 @@
+import React from 'react';
 import { getTasksInfo } from 'services/tasksService';
+
 
 import { Greeting } from 'components/greeting';
 
@@ -22,18 +24,18 @@ export class Main extends Component {
     const { name } = this.props;
 
     return (
-      <main className="main">
+      <section className="main-info">
         {
           info &&
-          <article className="info">
+          <React.Fragment>
             <Greeting time={new Date().getHours()} name={name} />
             <p>You have {info.total} tasks</p>
             <p>Done: {info.done}</p>
             <p>In progress: {info.inProgress}</p>
             <p>Waiting: {info.waiting}</p>
-          </article>
+          </React.Fragment>
         }
-      </main>
+      </section>
     );
   }
 }

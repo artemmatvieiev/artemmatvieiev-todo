@@ -1,4 +1,7 @@
+import React from 'react';
+
 import { checkUser } from 'services/userService';
+
 import { Loader } from 'components/Loader';
 import { Header } from './partials/header';
 import { Pages } from './pages';

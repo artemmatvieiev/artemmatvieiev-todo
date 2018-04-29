@@ -1,19 +1,16 @@
-.main {
-  width: 100%;
-  flex: 1;
-  padding: 20px;
+.main-info {
+  width: 40%;
+  margin: 0 auto;
+
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 10px;
+  }
+
   .greeting {
     font-size: 3rem;
     padding: 0;
     margin: 0 0 20px;
-  }
-  .info {
-    width: 40%;
-    margin: 0 auto;
-    p {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 0 0 10px;
-    }
   }
 }

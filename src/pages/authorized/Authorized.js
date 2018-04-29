@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { Main } from 'partials/main';
 import { TaskList } from '../TaskList';
 import { Task } from '../Task';
-// import { NotFound } from './NotFound';
+import { NotFound } from '../NotFound';
 import { UpdateUser } from '../UpdateUser';
 
 export const Authorized = ({ user }) => {
@@ -17,6 +17,7 @@ export const Authorized = ({ user }) => {
       <Route path="/tasks/:task" component={Task} />
       <Route path="/user" render={() => <UpdateUser user={user} />} />
       <Redirect from="/login" to="/" />
+      <Route component={NotFound} />
     </Switch>
   );
 };

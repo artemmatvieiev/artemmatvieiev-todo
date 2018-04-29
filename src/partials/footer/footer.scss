@@ -1,8 +1,8 @@
 @import '../../variables';
 
-.footer {
-  background: rgba(51, 53, 52, 0.5);
-  box-shadow: 0 0 5px 2px rgba(51, 53, 52, 0.5);
+.page-footer {
+  background: $bg-darkgrey;
+  box-shadow: 0 0 5px 2px $bg-darkgrey;
   color: #fff;
   padding: $common-paddings;
 }
