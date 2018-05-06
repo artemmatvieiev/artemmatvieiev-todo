@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { checkUser } from 'services/userService';
+import { setUser } from 'store';
 
 import { Loader } from 'components/Loader';
 import { Header } from './partials/header';
@@ -9,27 +12,19 @@ import { Footer } from './partials/footer';
 
 import './app.scss';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: null
-    };
-  }
-
+export class AppComponent extends Component {
   componentDidMount() {
     checkUser()
-      .then(user => this.setState({ user }))
+      .then(user => this.setLoginState(user))
       .catch(() => this.setLoginState(false));
   }
 
   setLoginState = (user) => {
-    this.setState({ user });
+    this.props.setUser(user);
   }
 
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
 
     return (
       <React.Fragment>
@@ -37,7 +32,7 @@ export class App extends Component {
           user={user}
           setLoginState={this.setLoginState}
         />
-        <main className="main">
+        <main className="page-main">
           {
             user !== null ?
               <Pages
@@ -51,3 +46,15 @@ export class App extends Component {
     );
   }
 }
+
+const mapState = ({ user }) => ({
+  user
+});
+
+const mapDispatch = dispatch => ({
+  setUser(user) {
+    dispatch(setUser(user));
+  }
+});
+
+export const App = withRouter(connect(mapState, mapDispatch)(AppComponent));

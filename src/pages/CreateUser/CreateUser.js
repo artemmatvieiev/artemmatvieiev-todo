@@ -3,8 +3,8 @@ import { create } from 'services/userService';
 
 export const CreateUser = (props) => {
   const userHandler = (data) => {
-    create(data).then(() => {
-      props.setLoginState();
+    create(data).then((user) => {
+      props.setLoginState(user);
       props.history.push('/success');
     });
   };

@@ -21,7 +21,7 @@ export class Tabs extends React.Component {
     const tabContents = tabs.filter(tab => tab.type === TabContent);
 
     return (
-      <div className="tabs">
+      <section className="tabs">
         <TabNav
           select={this.clickTab}
           activeIndex={this.state.id}
@@ -29,7 +29,7 @@ export class Tabs extends React.Component {
           {navList}
         </TabNav>
         { tabContents[this.state.id] }
-      </div>
+      </section>
     );
   }
 }

@@ -4,13 +4,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
   font-weight: bold;
+  color: #fff;
 
   a {
-    text-decoration: none;
     color: #fff;
     font-weight: bold;
+    text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
@@ -18,20 +19,33 @@
 
   .site-list {
     display: flex;
-    align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
+    align-items: center;
   }
 
   .site-list-item {
     margin: 0 10px 0 0;
   }
+
   .user {
-    width: 20%;
     position: relative;
+    width: 20%;
     text-align: right;
+    cursor: pointer;
+    border: 10px solid transparent;
+
+    &:hover .user-list{
+      z-index: 2;
+      padding: 0px 10px;
+      font: inherit;
+      background: $bg-darkgrey;
+      box-shadow: 0 0 5px 2px #fff;
+
+    }
   }
+
   .user-list {
     position: absolute;
     bottom: -50px;
@@ -42,28 +56,16 @@
     background: transparent;
     list-style: none;
     transition: all 0.5s;
-
-    .user-logout {
-      padding: 0;
-      margin: 0;
-      background: none;
-      border: none;
-      color: inherit;
-      font: inherit;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    &.active {
-      font: inherit;
-      padding: 0px 10px;
-      background: $bg-darkgrey;
-      box-shadow: 0 0 5px 2px #fff;
-    }
   }
-  .user-name {
-    padding: 0px 10px;
+
+  .user-logout {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    
     &:hover {
       text-decoration: underline;
     }

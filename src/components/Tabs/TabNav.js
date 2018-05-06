@@ -1,13 +1,13 @@
 export const TabNav = ({ children, select, activeIndex }) => (
-  <nav className="nav-tab">
-    <ul>
+  <nav className="tab-nav">
+    <ul className="tab-nav-list">
       {
         children.map((el, index) => {
           const TabLink = el.type;
           return (
             <li
               key={index}
-              className={activeIndex === index ? 'active' : ''}
+              className={`tab-nav-item ${activeIndex === index ? 'active' : ''}`}
             >
               <TabLink
                 {...el.props}

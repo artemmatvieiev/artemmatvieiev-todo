@@ -1,8 +1,9 @@
 @import '../../variables';
 
 .page-footer {
-  background: $bg-darkgrey;
-  box-shadow: 0 0 5px 2px $bg-darkgrey;
-  color: #fff;
+  width: 100%;
+  margin: 10px 0 30px;
+  box-shadow: 0 0 5px 2px #fff;
+  border-radius: 3px;
   padding: $common-paddings;
 }

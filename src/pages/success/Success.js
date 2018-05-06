@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
+import { login } from 'services/userService';
 
-export const Success = () => (
-  <section>
-    <p>Account was successfully created.</p>
-    <p>Now you can use your email and password to login into profile.</p>
-    <Link to="/success">Go to main page</Link>
-  </section>
-);
+import './success.scss';
+
+export const Success = (props) => {
+  login(props.user)
+    .then(data => props.login(data))
+    /* eslint no-console: ["error", { allow: ["log"] }] */
+    .catch(console.log);
+
+  return (
+    <section className="success">
+      <p>Account was successfully created.</p>
+      <Link to="/">Go to main page</Link>
+    </section>
+  );
+};
