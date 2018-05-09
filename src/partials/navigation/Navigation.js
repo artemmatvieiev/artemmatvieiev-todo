@@ -29,7 +29,7 @@ export const Navigation = (props) => {
       <ul className="site-list">
         <li className="main-logo">
           <Link to="/">
-            <img src="./images/logo.png" width="50" alt="logo" />
+            <img src="./assets/images/logo.png" width="50" alt="logo" />
           </Link>
         </li>
         {
