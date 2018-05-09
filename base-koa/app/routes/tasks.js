@@ -130,7 +130,6 @@ class Tasks extends Controller {
       task.description = description;
 
       if ('done' in data) {
-        console.log(data);
         task.done = data.done;
       }
     }

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"id":0,"firstName":"Artem","lastName":"Matvieiev","email":"admin@a.com","password":"admin","age":19,"sid":"631a3bad5af4d9e23c1bd8f697b9b007d4804ddc8273c54c"},{"email":"aaaaa@aaa.aaa","firstName":"aaaaaaa","lastName":"aaaaaaaaa","password":"aaaaa","id":2}]
-=======
-[{"id":0,"firstName":"Artem","lastName":"Matvieiev","email":"admin@a.com","password":"admin","age":19,"sid":"f59d24e13faad4e89b354e9e5f526b24f5d010c219a28c6c"}]
->>>>>>> c4e5c538b06cc9891c8ac7092a67240b43f9e92c
+[{"id":0,"firstName":"Artem","lastName":"Pethrick","email":"admin@a.com","password":"admin","age":19,"sid":"631a3bad5af4d9e23c1bd8f697b9b007d4804ddc8273c54c"},{"email":"artemmatvieiev@gmail.com","firstName":"artem","lastName":"artem","password":"1111","id":2},{"email":"artem@gmail.com","firstName":"Artem","lastName":"Matvieiev","password":"07091982","id":3},{"email":"art@gmail.com","firstName":"Artem","lastName":"Matvieiev","password":"","id":4}]
