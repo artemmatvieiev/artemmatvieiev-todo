@@ -4,6 +4,9 @@ export const addTodo = payload => ({ type: ADD_TASK, payload });
 export const REMOVE_TASK = 'Remove task';
 export const removeTodo = payload => ({ type: REMOVE_TASK, payload }); // {day:0, index:1}
 
+export const UPDATE_TASK = 'Update task';
+export const updateTodo = payload => ({ type: UPDATE_TASK, payload });
+
 export const SET_STATUS_TASK = 'Set status task';
 export const setStatusTodo = payload => ({ type: SET_STATUS_TASK, payload });
 

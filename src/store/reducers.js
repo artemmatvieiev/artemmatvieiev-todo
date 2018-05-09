@@ -1,4 +1,4 @@
-import { ADD_TASK, SET_USER, SET_INFO, REMOVE_TASK, SET_STATUS_TASK } from './actions';
+import { ADD_TASK, SET_USER, SET_INFO, REMOVE_TASK, SET_STATUS_TASK, UPDATE_TASK } from './actions';
 
 export const tasks = (state = [], action) => {
   switch (action.type) {
@@ -14,6 +14,9 @@ export const tasks = (state = [], action) => {
     }
     case SET_STATUS_TASK: {
       return [...state, ...action.payload];
+    }
+    case UPDATE_TASK: {
+      return action.payload;
     }
   }
 

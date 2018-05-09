@@ -1,8 +1,10 @@
-import { updateTask, getTask, createTask } from 'services/tasksService';
+import { connect } from 'react-redux';
+import { updateTodo } from 'store';
+import { getTasks, updateTask, getTask, createTask } from 'services/tasksService';
 
 import './task.scss';
 
-export class Task extends Component {
+export class TaskComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +34,15 @@ export class Task extends Component {
       promise = createTask(this.state);
     }
 
-    promise.then(() => this.props.history.push('/tasks'));
+    promise.then(() => {
+      getTasks()
+        .then(tasks => this.props.updateTodo(tasks))
+        /* eslint no-console: ["error", { allow: ["log"] }] */
+        .catch(console.log);
+    });
+
+    this.props.history.goBack();
+
     e.preventDefault();
   };
 
@@ -73,3 +83,11 @@ export class Task extends Component {
     );
   }
 }
+
+const mapDispatch = dispatch => ({
+  updateTodo(tasks) {
+    dispatch(updateTodo(tasks));
+  }
+});
+
+export const Task = connect(null, mapDispatch)(TaskComponent);
